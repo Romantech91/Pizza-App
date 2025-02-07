@@ -55,7 +55,7 @@ exports.deletePizza = async (req, res) => {
 
 
 // Breakdown of the code above:
-// The createPizza function creates a new pizza instance with the request body, saves it to the database, and responds with the newly created pizza.
+// The createpizza function checks if a pizza with the same name already exists, creates a new pizza instance with the request body, saves it to the database, and responds with the newly created pizza.
 // The getAllPizzas function finds all pizzas in the database and populates the toppings field with data from the Topping model before responding with the pizzas data.
 // The updatePizza function finds a pizza by ID, updates it with the request body, and responds with the updated pizza.
 // The deletePizza function finds a pizza by ID and deletes it before responding with a success message.

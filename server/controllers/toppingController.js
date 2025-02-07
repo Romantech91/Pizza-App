@@ -54,7 +54,7 @@ exports.deleteToppings = async (req, res) => {
 
 
 // Breakdown of the code above:
-// The createTopping function creates a new topping instance with the request body, saves it to the database, and responds with the newly created topping.
+// the createTopping function checks if a topping with the same name already exists, creates a new topping instance with the request body, saves it to the database, and responds with the newly created topping.
 // The getAllToppings function fetches all toppings from the database and responds with the toppings data.
 // The updateToppings function finds a topping by ID, updates it with the request body, and responds with the updated topping.
 // The deleteToppings function finds a topping by ID and deletes it before responding with a success message.
