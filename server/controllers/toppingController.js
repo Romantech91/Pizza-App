@@ -3,6 +3,11 @@ const Topping = require('../models/topping'); // Import the Topping model
 // Create a new topping
 exports.createTopping = async (req, res) => {
     try {
+        // Check if the topping already exists
+        const existingTopping = await Topping.findOne({ name: req.body.name });
+    if (existingTopping) {
+      return res.status(400).json({ message: 'Topping already exists' });
+    }
         const topping = new Topping(req.body); // Create a new topping instance with the request body
         await topping.save(); // Save the topping to the database
         res.status(201).json(topping); // Respond with the newly created topping

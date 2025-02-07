@@ -4,6 +4,11 @@ const Topping = require('../models/topping');
 // Create a new pizza
 exports.createPizza = async (req, res) => {
     try {
+         // Check if the pizza already exists
+    const existingPizza = await Pizza.findOne({ name: req.body.name });
+    if (existingPizza) {
+      return res.status(400).json({ message: 'Pizza already exists' });
+    }
         const pizza = new Pizza(req.body); // Create a new pizza instance with the request body
         await pizza.save(); // Save the pizza to the database
         res.status(201).json(pizza); // Respond with the newly created pizza
