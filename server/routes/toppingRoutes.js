@@ -16,7 +16,7 @@ router.put('/toppings/:id', toppingController.updateTopping); //PUT request to u
 // Route to delete a topping
 router.delete('toppings/:id', toppingController.deleteTopping); //DELETE request to delete a topping by ID
 
-module.exports = router; // Export the router to be used in the server.js file
+module.exports = router; // Export the router to be used in the index.js file
 
 
 // Breakdown of the code above:
