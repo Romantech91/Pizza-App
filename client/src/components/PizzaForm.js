@@ -10,6 +10,11 @@ const PizzaForm = ({ pizzaToEdit, setPizzaToEdit }) => {
     const handleSubmit = async (e) => {
         e.preventDefault(); //Prevent the default form submission (page refresh)
 
+        if (!name || !description) {
+            alert('Please enter a name and description for the pizza'); // Alert the user if the name or description is missing
+            return;
+        }
+        
         //Create a pizza object with the inout data and the current date
         const pizzaData = { name, description };
 
@@ -65,4 +70,3 @@ export default PizzaForm;
 // use the useState hook to store the name and description of the pizza in the state
 // create a handleSubmit function that prevents the default form submission, creates a pizza object with the input data, and sends a POST request to create a new pizza or a PUT request to update an existing pizza
 // the form has two input fields for the pizza name and description, and a submit button that changes text based on whether we are editing or creating a pizza
-
