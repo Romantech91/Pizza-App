@@ -1,0 +1,68 @@
+import React, { useState } from 'react'; 
+import axios from 'axios';
+
+const PizzaForm = ({ pizzaToEdit, setPizzaToEdit }) => {
+    // State for pizza name and description that will be controlled inputs
+    const [name, setName] = useState(pizzaToEdit ? pizzaToEdit.name : ''); // if editing, prefill with pizza data
+    const [description, setDescription] = useState(pizzaToEdit ? pizzaToEdit.description : ''); // if editing, prefill with pizza data
+
+    //Handle the form submission
+    const handleSubmit = async (e) => {
+        e.preventDefault(); //Prevent the default form submission (page refresh)
+
+        //Create a pizza object with the inout data and the current date
+        const pizzaData = { name, description };
+
+        try {
+            // Check if we are editing or adding a pizza
+            if (pizzaToEdit) {
+                // if editing, send a PUT request to update the pizza by its ID
+                await axios.put (`http://localhost:3000/api/pizzas/${pizzaToEdit._id}`, pizzaData);
+                setPizzaToEdit(null); //Resets the pizzaToEdit state after updating
+            } else {
+                // If creating, send a post request to create a new pizza
+                await axios.post('http://localhost:3000/api/pizzas', pizzaData);
+            }
+            // Optionally, you could refetch pizzas here or reset form fields
+            setName(''); // Reset the name input field
+            setDescription(''); // Reset the description input field
+        } catch (error) {
+            console.error('Error submitting pizza form:', error); // Log any errors
+        }
+    
+};
+
+return (
+    <form onSubmit={handleSubmit}> {/* Trigger handleSubmit when the form is submitted */}
+    <h2>{pizzaToEdit ? 'Edit Pizza' : 'Create New Pizza'}</h2> {/* Change the form title based on whether we are editing or creating a pizza */}
+    <div>
+        <label>Name:</label>
+        <input
+            type="text"
+            value={name} // Controlled input for pizza name
+            onChange={(e) => setName(e.target.value)} // Update the name state when the input changes
+            /> 
+    </div>
+    <div>
+        <label>Description:</label>
+        <input
+            type="text"
+            value={description} // Controlled input for pizza description
+            onChange={(e) => setDescription(e.target.value)} // Updates the description state when the input changes 
+            />
+    </div>
+    <button type="submit">{pizzaToEdit ? 'Update Pizza' : 'Create Pizza'}</button> {/* Button text changes based on whether we are editing or creating a pizza */}
+    </form>
+);
+};
+
+export default PizzaForm;
+
+// Breakdown of the code above
+// import react and useState hooks from react
+// import axios to make http requests
+// create a PizzaForm component that takes in the pizzaToEdit and setPizzaToEdit props
+// use the useState hook to store the name and description of the pizza in the state
+// create a handleSubmit function that prevents the default form submission, creates a pizza object with the input data, and sends a POST request to create a new pizza or a PUT request to update an existing pizza
+// the form has two input fields for the pizza name and description, and a submit button that changes text based on whether we are editing or creating a pizza
+

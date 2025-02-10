@@ -2,14 +2,17 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const PizzaList = () => {
+    // State to hold pizza data fetched from the backend
     const [pizzas, setPizzas] = useState([]); // state to store pizzas
 
-    // fetch pizzas from the server
+    // useEffect hook to fetch pizzas when the component mounts
     useEffect(() => {
+        // Async function to fetch pizzas
         const fetchPizzas = async () => {
             try{
-                const response = await axios.get('http://localhost:5000/api/pizzas');
-                setPizzas(response.data); // Set the fetched pizzas to state
+                // Make a GET request to the backend
+                const response = await axios.get('http://localhost:3000/api/pizzas');
+                setPizzas(response.data); // Update the pizzas state with the response data
             } catch (error) {
                 console.error('Error fetching pizzas: ', error);
             }
@@ -22,9 +25,10 @@ return (
     <div>
         <h2>Pizza Lists</h2>
         <ul>
+            {/* Map over the pizzas array and display each pizza's name and description */}
             {pizzas.map((pizza) => (
-                <li key={pizza._id}>
-                    {pizza.name} - {pizza.description}
+                <li key={pizza._id}> {/* Pizzas unique _id used as the key */}
+                    {pizza.name} - {pizza.description} {/* Display the pizza's name and description */}
                 </li>
             ))}
         </ul>
