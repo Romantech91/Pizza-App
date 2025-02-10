@@ -4,6 +4,7 @@ import axios from 'axios';
 const PizzaList = () => {
     // State to hold pizza data fetched from the backend
     const [pizzas, setPizzas] = useState([]); // state to store pizzas
+    const [loading, setLoading] = useState(true); // state to store loading status
 
     // useEffect hook to fetch pizzas when the component mounts
     useEffect(() => {
@@ -15,15 +16,18 @@ const PizzaList = () => {
                 setPizzas(response.data); // Update the pizzas state with the response data
             } catch (error) {
                 console.error('Error fetching pizzas: ', error);
+            } finally {
+                setLoading(false); // Set loading to false after fetching pizzas
             }
         };
         fetchPizzas();
     }, []); // empty array dependency array means this effect funs only once when the component mounts
-}
+
 
 return (
     <div>
-        <h2>Pizza Lists</h2>
+        <h2>Pizza List</h2>
+        {loading ? (<p>Loading Pizzas...</p>) : pizzas.length > 0 ? (
         <ul>
             {/* Map over the pizzas array and display each pizza's name and description */}
             {pizzas.map((pizza) => (
@@ -32,8 +36,10 @@ return (
                 </li>
             ))}
         </ul>
+) : ( <p>No pizzas found</p> )}
     </div>
-)
+);
+};
 
 export default PizzaList;
 
