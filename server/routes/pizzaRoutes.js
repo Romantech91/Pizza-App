@@ -5,7 +5,7 @@ const pizzaController = require('../controllers/pizzaController'); // Import the
 // Define the routes for the pizza API
 
 // Route to create a new pizza
-router.ppost('/pizzas', pizzaController.createPizza); //POST request to create a new pizza
+router.post('/pizzas', pizzaController.createPizza); //POST request to create a new pizza
 
 // Route to get all pizzas with toppings
 router.get('/pizzas', pizzaController.getAllPizzas); //GET request to fetch all pizzas with toppings
