@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const ToppingList = () => {
     // State to hold the toppings fetched from the backend
-    const [toppings, setToppings] = usseState([]); // Initialize the toppings state as an empty array
+    const [toppings, setToppings] = useState([]); // Initialize the toppings state as an empty array
 
     // useEffect hook to fetch toppings when the component mounts
     useEffect(() => {
