@@ -26,6 +26,19 @@ const ToppingForm = ({ toppingToEdit, setToppingToEdit }) => {
         }
     };
 
+    const handleDelete = async () => {
+        if (toppingToEdit) {
+            try {
+                // Send a DELETE request to delete the topping by its ID
+                await axios.delete(`http://localhost:3000/api/toppings/${toppingToEdit._id}`);
+                setToppingToEdit(null); // Reset the toppingToEdit state after deleting
+                setName(''); // Reset the name input field
+            } catch (error) {
+                console.error('Error deleting topping:', error); // Log any errors
+            }
+        }
+    };
+
     return ( <form onSubmit={handleSubmit}> {/* Trigger handleSubmit when the form is submitted */}
                 <h2>{toppingToEdit ? 'Edit Topping' : 'Create New Topping'}</h2> {/* Change the form title based on whether we are editing or creating a topping */}
                 <div>
@@ -37,10 +50,17 @@ const ToppingForm = ({ toppingToEdit, setToppingToEdit }) => {
                     />
                 </div>
                 <button type="submit">{toppingToEdit ? 'Update Topping' : 'Create Topping'}</button> {/* Button text changes based on whether we are editing or creating a topping */}
+                {toppingToEdit && (
+                    <button type="button" onClick={handleDelete}>Delete Topping</button>
+                )}
             </form>
             );
 };
 
 export default ToppingForm;
 
-// In the code above, we have created a ToppingForm component that allows users to create or edit toppings. The component uses the useState hook to store the name of the topping in the state. The handleSubmit function is called when the form is submitted, and it sends a POST request to create a new topping or a PUT request to update an existing topping. The form title changes based on whether we are creating a new topping or editing an existing one. The input field for the topping name is controlled by the state, and the name state is updated when the input changes. After the form is submitted, the input field is cleared. This component can be used to create or edit toppings in the frontend of a pizza ordering application.
+//Breakdown of the code above:
+//The ToppingForm component is used to create or edit a topping.
+//useState is used to manage the state of the topping name input field.
+//The handleSubmit function is triggered when the form is submitted. It sends a POST request to create a new topping or a PUT request to update an existing topping.
+//The handleDelete function is triggered when the delete button is clicked. It sends a DELETE request to delete the topping. 
