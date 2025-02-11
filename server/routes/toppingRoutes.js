@@ -1,6 +1,6 @@
 const express = require('express'); // Import the express package
 const router = express.Router(); // Create a new router using the express.Router() method
-const toppingController = require('../controllers/toppingController'); // Import the topping controller
+const toppingController = require('../controllers/toppingController.js'); // Import the topping controller
 
 // Define the routes for the topping API
 
@@ -11,10 +11,10 @@ router.post('/toppings', toppingController.createTopping); //POST request to cre
 router.get('/toppings', toppingController.getAllToppings); //GET request to fetch all toppings
 
 // Route to update an existing topping
-router.put('/toppings/:id', toppingController.updateTopping); //PUT request to update a topping by ID
+router.put('/toppings/:id', toppingController.updateToppings); //PUT request to update a topping by ID
 
 // Route to delete a topping
-router.delete('toppings/:id', toppingController.deleteTopping); //DELETE request to delete a topping by ID
+router.delete('/toppings/:id', toppingController.deleteToppings); //DELETE request to delete a topping by ID
 
 module.exports = router; // Export the router to be used in the index.js file
 

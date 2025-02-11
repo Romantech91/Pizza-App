@@ -1,6 +1,6 @@
 const express = require('express'); // Import the express package
 const router = express.Router(); // Create a new router using the express.Router() method
-const pizzaController = require('../controllers/pizzaController'); // Import the pizza controller
+const pizzaController = require('../controllers/pizzaController.js'); // Import the pizza controller
 
 // Define the routes for the pizza API
 
