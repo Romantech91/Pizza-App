@@ -71,6 +71,9 @@ return (
             />
     </div>
     <button type="submit">{pizzaToEdit ? 'Update Pizza' : 'Create Pizza'}</button> {/* Button text changes based on whether we are editing or creating a pizza */}
+    {pizzaToEdit && (
+        <button type="button" onClick={handleDelete}>Delete Pizza</button>
+    )}
     </form>
 );
 };
