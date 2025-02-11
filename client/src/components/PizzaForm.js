@@ -37,6 +37,20 @@ const PizzaForm = ({ pizzaToEdit, setPizzaToEdit }) => {
     
 };
 
+const handleDelete = async () => {
+    if (pizzaToEdit) {
+        try {
+            // Send a DELETE request to delete the pizza by its ID
+            await axios.delete(`http://localhost:3000/api/pizzas/${pizzaToEdit._id}`);
+            setPizzaToEdit(null); // Reset the pizzaToEdit state after deleting
+            setName(''); // Reset the name input field
+            setDescription(''); // Reset the description input field
+        } catch (error) {
+            console.error('Error deleting pizza:', error); // Log any errors
+        }
+    }
+};
+
 return (
     <form onSubmit={handleSubmit}> {/* Trigger handleSubmit when the form is submitted */}
     <h2>{pizzaToEdit ? 'Edit Pizza' : 'Create New Pizza'}</h2> {/* Change the form title based on whether we are editing or creating a pizza */}
