@@ -44,9 +44,4 @@ return (
 export default PizzaList;
 
 
-// Break down of the code above
-// import use effect and use state hooks from react
-// import axios to make http requests
-// use the useState hook to store the pizzas in the state
-// useEffectt fetches data from the backend when the component mounts. it uses axios to make a GET request to the /pizzas endpoint and stores the response in the pizzas state variable
-// the pizzas are displayed in an unordered list using the map function to iterate over the pizzas array and display each pizza's name and description
+// In the code above, we have created a PizzaList component that fetches and displays a list of pizzas from the backend. The component uses the useState hook to store the pizzas in the state and the loading status. The useEffect hook fetches the pizza data when the component mounts by sending a GET request to the /pizzas endpoint. The fetched pizzas are stored in the pizzas state, and the loading status is set to false after fetching the pizzas. The pizzas are displayed in an unordered list using the map function to iterate over the pizzas array and display each pizza's name and description. If there are no pizzas found, a message is displayed. This component can be used to display a list of pizzas in the frontend of a pizza ordering application.
