@@ -81,9 +81,11 @@ return (
 export default PizzaForm;
 
 // Breakdown of the code above
-// import react and useState hooks from react
-// import axios to make http requests
-// create a PizzaForm component that takes in the pizzaToEdit and setPizzaToEdit props
-// use the useState hook to store the name and description of the pizza in the state
-// create a handleSubmit function that prevents the default form submission, creates a pizza object with the input data, and sends a POST request to create a new pizza or a PUT request to update an existing pizza
-// the form has two input fields for the pizza name and description, and a submit button that changes text based on whether we are editing or creating a pizza
+// The PizzaForm component is a functional component that takes in the pizzaToEdit state and setPizzaToEdit function as props.
+// The component uses the useState hook to create controlled inputs for the pizza name and description.
+// The handleSubmit function is called when the form is submitted. It checks if the name and description are provided, creates a pizzaData object, and sends a POST or PUT request to the API to create or update a pizza.
+// The handleDelete function is called when the "Delete Pizza" button is clicked. It sends a DELETE request to the API to delete the pizza by its ID.
+// The form displays the appropriate title based on whether we are editing or creating a pizza.
+// The form inputs are controlled inputs that update the name and description states when the user types in the input fields.
+// The button text changes based on whether we are editing or creating a pizza.
+// If we are editing a pizza, a "Delete Pizza" button is displayed that calls the handleDelete function when clicked.

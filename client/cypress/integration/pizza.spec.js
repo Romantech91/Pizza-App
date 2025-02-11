@@ -33,4 +33,9 @@ describe('Pizza CRUD operations', () => {
         cy.visit('http://localhost:3000'); // Visit the homepage
 
         // Find the pizza to delete
-        cy.get('button').contains
+        cy.get('button').contains('Delete Pizza').click(); // Click the delete button
+
+        //Assert that the pizza was deleted successfully
+        cy.contains('Updated Pizza Name').should('not.exist'); // Check if the deleted pizza name does not exist on the page
+    });
+});
